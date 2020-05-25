@@ -1,0 +1,56 @@
+ShowcaseScreen:
+    name: 'Demarrer'
+    
+    fullscreen: True
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Démarrer' if app.language == 'FR' else 'Start'
+
+    
+
+
+    GridLayout:
+
+        cols: 2
+        spacing: '8dp'
+        size_hint_y: None
+        height: self.minimum_height
+
+
+        Button:
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '48dp'
+            text: 'Capturer' if app.language == 'FR' else 'Capture'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_release: 
+                idx = app.screen_names.index('Capturer');\
+                app.go_screen(idx)
+
+        Button:
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '48dp'
+            text: 'Parcourir...' if app.language == 'FR' else 'Upload...'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_release: 
+                idx = app.screen_names.index('Parcourir');\
+                app.go_screen(idx)
+
+
+<CTextInput@TextInput>
+    on_focus:
+        screen = self.parent.parent.parent.parent
+        if screen.parent: screen.focused = self

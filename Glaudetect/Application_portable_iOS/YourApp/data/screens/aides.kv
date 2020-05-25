@@ -1,0 +1,17 @@
+ShowcaseScreen:
+    name: 'Aides'
+
+    fullscreen: True
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Aides' if app.language == 'FR' else 'Help'
+            Label:
+                text: "\n  \n Comment utiliser l'application ? \n \n        C'est très simple. Vous allez dans le menu 'Accueil' pour retrouver les deux boutons permettant d'utiliser un algorithme pour le depistage du Glaucome OU alors vous pouvez retrouver les deux boutons dans le menu 'Capturer'. Vous avez deux options :  \n - Cliquer sur le bouton 'Capturer' afin de prendre directement une photo de votre fond d'oeil. Vous pouvez en prendre plusieurs jusqu'à cliquer sur le bouton 'Valider' afin de choisir celle que vous voulez utiliser pour faire le traitement d'image. \n - Cliquer sur le bouton 'Parcourir' afin d'importer une photo directement sur votre smartphone.  \n  \n Ensuite, plusieurs boutons vont apparaître. Vous pouvez soit faire étape par étape ou cliquer directement sur 'Procédure entière'. La valeur du CDR (Cup-to-Disc Ratio) sera affichée. Si elle est inférieure à 0.63, vous n'êtes pas atteint du Glaucome." if app.language == 'FR' else "\n  \n How to use the mobile app ? \n \n        You have to go on the tab 'Home' to find the two buttons in order to use the algorithm for Glaucoma screening. The same buttons are on the tab 'Capture'. You have two choice :  \n - Click 'Capture' to take directly a picture of the back of your eye. You can take several pictures until click 'Confirm' to select the picture that you want to use for the image processing. \n - Click 'Upload' to import directly a picture on your mobile.  \n  \n Then, you'll see several buttons. You can do the image processing step by step or click directly 'Total procedure'. The current value of the CDR (Cup to Disc Ratio) will be displayed. If the value is less than 0.63, you are not affected by Glaucoma."
+                text_size: self.width, None
+                text_size: self.size
+                halign: 'left'
+                valign: 'top'

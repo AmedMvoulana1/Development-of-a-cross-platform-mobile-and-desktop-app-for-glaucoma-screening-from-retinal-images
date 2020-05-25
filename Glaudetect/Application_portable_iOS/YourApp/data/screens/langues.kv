@@ -1,0 +1,49 @@
+ShowcaseScreen:
+    name: 'Langues'
+
+    fullscreen: True
+
+    Accordion:
+        orientation: 'vertical'
+
+        AccordionItem:
+
+            title: 'Langues' if app.language == 'FR' else 'Languages'
+            halign: 'center'
+            valign: 'top'
+            Label:
+                pos_hint: {'center_x': .1, 'center_y': .4}
+                text: '\n Choisissez votre langue : ' if app.language == 'FR' else '\n Choose your language : '
+                text_size: self.width, None
+                text_size: self.size
+                halign: 'center'
+                valign: 'top'
+
+
+            RelativeLayout:
+                GridLayout:
+                    pos_hint: {'center_x': 0, 'center_y': .7}
+                    cols: 2
+                    spacing: '8dp'
+                    size_hint: .5, None
+                    height: self.minimum_height
+
+                    Label:
+                        text: 'Français' if app.language == 'FR' else 'French'
+
+                    Label:
+                        text: 'English' if app.language == 'FR' else 'Anglais'
+
+                    CheckBox:
+                        size_hint_y: None
+                        height: '48dp'
+                        group: 'g2'
+                        on_release: app.francais()
+
+                    CheckBox:
+                        size_hint_y: None
+                        height: '48dp'
+                        group: 'g2'
+                        on_release: app.anglais()
+
+

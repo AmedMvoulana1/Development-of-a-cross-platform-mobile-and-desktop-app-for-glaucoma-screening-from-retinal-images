@@ -1,0 +1,45 @@
+ShowcaseScreen:
+    name: 'Commencer'
+
+    Label:
+        text: 'Choix du procédé : \n \n' if app.language == 'FR' else 'Choice of the process : \n \n'
+        text_size: self.width, None
+        text_size: self.size
+        halign: 'center'
+        valign: 'top'
+
+    GridLayout:
+
+        cols: 2
+        spacing: '8dp'
+        size_hint_y: None
+        height: self.minimum_height
+
+        Label:
+            text: ' \n' if app.language == 'FR' else ' \n'
+            text_size: self.width, None
+            text_size: self.size
+
+        Label:
+            text: ' \n' if app.language == 'FR' else ' \n'
+            text_size: self.width, None
+            text_size: self.size
+
+        Button:
+            background_normal: 'data/background_accordion.png'
+            size_hint_y: None
+            height: '48dp'
+            text: 'Importer une image' if app.language == 'FR' else 'Upload a picture'
+            group: 'g1'
+
+        Button:
+            background_normal: 'data/background_accordion.png'
+            size_hint_y: None
+            height: '48dp'
+            text: 'Prendre une image' if app.language == 'FR' else 'Take a picture'
+            group: 'g2'
+            on_press: root.capture()
+            
+
+
+      

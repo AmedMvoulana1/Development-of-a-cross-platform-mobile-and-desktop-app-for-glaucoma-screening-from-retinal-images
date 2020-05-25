@@ -1,0 +1,38 @@
+ShowcaseScreen:
+    name: 'Parcourir'
+    fullscreen: True
+
+    BoxLayout:
+
+        FileChooserIconView:
+            id: filechooser
+            filters: ['*.jpeg', '*.jpg', '*.png']
+            path: root.dossier()
+            on_selection: root.selected(filechooser.selection)
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: '8dp'
+            padding: '8dp'
+
+            Image:
+                id: image
+                source: 'data/background.png'
+                halign: 'center'
+                valign: 'middle'
+
+
+            Button:
+                size_hint: 1, .12
+                background_color: .2, .7, .6, .6
+                text: 'Valider' if app.language == 'FR' else 'Confirm'
+                halign: 'center'
+                valign: 'middle'
+                values: app.screen_names
+                on_release: 
+                    root.valider2(root.selected(filechooser.selection))
+                    idx = app.screen_names.index('Détecter');\
+                    app.go_screen(idx)
+                    app.go_folder()
+
+

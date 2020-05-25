@@ -1,0 +1,43 @@
+ShowcaseScreen:
+    name: 'Accueil'
+
+    fullscreen: True
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Bienvenue sur Glaudetect' if app.language == 'FR' else 'Welcome to Glaudetect'
+            Label:
+                text: "\n  \n Quel est le but de cette application ? \n \n        Nous avons voulu permettre à chaque personne de réaliser un test pour détecter ou non si elle est atteinte de Glaucome. Ainsi, cela va leur éviter de se déplacer pour un rendez-vous médical. Même dans les endroits reculés cette application pourra être utilisée car elle ne nécessite pas Internet. \n        Le Glaucome est une maladie dégénérative du nerf optique entrainant une perte progressive de la vision. Cette maladie peut potentiellement toucher tous types de personnes, de tout âge et de tout horizon.  \n \n     Pour commencer, veuillez cliquer sur 'Capturer' pour prendre une photo du fond d'oeil ou cliquer sur 'Pourcourir' pour importer une photo." if app.language == 'FR' else "\n  \n What is the purpose of this mobile app ? \n \n        Our mobile application is intended to people who wants to make a diagnosis to detect Glaucoma. So then, they avoid leaving their house to go at a medical appointment. Even in remote place, this mobile app can be used without the Internet. \n        Glaucoma is a disease that damages your eye’s optic nerve. It can lead to blindness and can occur at any age, any group of people.  \n \n     To begin, please click 'Capture' to take an image of the fundus of the eye or click 'Upload' to import an image."
+                markup: True
+                text_size: self.width, None
+                text_size: self.size
+                halign: 'left'
+                valign: 'top'
+
+
+    GridLayout:
+
+        cols: 2
+        spacing: '8dp'
+        size_hint_y: None
+        height: self.minimum_height
+
+
+
+        Button:
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '48dp'
+            text: 'Démarrer' if app.language == 'FR' else 'Start'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_release: 
+                idx = app.screen_names.index('Demarrer');\
+                app.go_screen(idx)
+
