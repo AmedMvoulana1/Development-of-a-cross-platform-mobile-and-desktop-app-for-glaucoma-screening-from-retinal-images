@@ -1,0 +1,58 @@
+ShowcaseScreen:
+    name: 'Accueil'
+
+    fullscreen: True
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Démarrer' if app.language == 'FR' else 'Start'
+            Label:
+                text: ''
+                size_hint: .3, .15
+
+            Image:
+                source: 'data/ImgStart.png' if app.language == 'FR' else 'data/ImgStartEN.png'
+
+            Label:
+                text: ''
+                size_hint: .3, .15
+
+
+    GridLayout:
+
+        cols: 2
+        spacing: '8dp'
+        size_hint_y: None
+        height: self.minimum_height
+
+
+        Button:
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '57dp'
+            text: 'Sélectionner une base existante' if app.language == 'FR' else 'Choose an existing database'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_release: 
+                idx = app.screen_names.index('Choose');\
+                app.go_screen(idx)
+
+        Button:
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '57dp'
+            text: 'Créer une base' if app.language == 'FR' else 'Create a database'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_release: 
+                idx = app.screen_names.index('Create');\
+                app.go_screen(idx)

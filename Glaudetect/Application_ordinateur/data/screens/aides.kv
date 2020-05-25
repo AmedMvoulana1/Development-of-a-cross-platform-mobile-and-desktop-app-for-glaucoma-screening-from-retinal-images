@@ -1,0 +1,60 @@
+ShowcaseScreen:
+    name: 'Aides'
+
+    fullscreen: True
+
+    BoxLayout:
+        spacing: '8dp'
+        orientation: 'vertical'
+
+        BoxLayout:
+            spacing: '8dp'    
+            Label:
+                text: "Comment utiliser l'application ? \n \n     C'est très simple. Vous allez dans le menu 'Accueil' pour retrouver les deux boutons permettant d'utiliser un algorithme pour le depistage du Glaucome : 'Capturer' OU 'Parcourir...'" if app.language == 'FR' else "How to use the mobile app ? \n \n       You have to go on the tab 'Home' to find the two buttons in order to use the algorithm for Glaucoma screening. The same buttons are on the tab 'Start'."
+                text_size: self.width, None
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+
+            Image:
+                source: 'data/AideChoix.png'
+
+
+        BoxLayout:
+            spacing: '8dp'
+
+            Label:
+                text: "Cliquer sur le bouton 'Démarrer' afin de prendre directement une photo de votre fond d'oeil. Vous pouvez en prendre plusieurs jusqu'à cliquer sur le bouton 'Valider' afin de choisir celle que vous voulez utiliser pour faire le traitement d'image." if app.language == 'FR' else "You have two choices :  \n - Click on 'Start' to take directly a picture of the back of your eye. You can take several pictures until click on 'Confirm' to select the picture that you want to use for the image processing."
+                text_size: self.width, None
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+
+            Image:
+                source: 'data/AideCam.png'
+
+
+        BoxLayout:
+            spacing: '8dp'
+            Label:
+                text: "Cliquer sur le bouton 'Parcourir' afin d'importer une photo directement sur votre smartphone."  if app.language == 'FR' else "Click on 'Upload' to import directly a picture on your mobile."
+                text_size: self.width, None
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+
+            Image:
+                source: 'data/AideParc.png'
+
+
+        BoxLayout:
+            spacing: '8dp'
+            Label:
+                text: "Ensuite, plusieurs boutons vont apparaître. Vous pouvez soit faire étape par étape ou cliquer directement sur 'Procédure entière'. La valeur du CDR (Cup-to-Disc Ratio) sera affichée. Si elle est inférieure à 0.63, vous n'êtes pas atteint du Glaucome." if app.language == 'FR' else "Then, you'll see several buttons. You can do the image processing step by step or click directly on 'Total procedure'. The current value of the CDR (Cup-to-Disc Ratio) will be displayed. If the value is less than 0.63, you are not affected by Glaucoma."
+                text_size: self.width, None
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+
+            Image:
+                source: 'data/AideDetect.png'

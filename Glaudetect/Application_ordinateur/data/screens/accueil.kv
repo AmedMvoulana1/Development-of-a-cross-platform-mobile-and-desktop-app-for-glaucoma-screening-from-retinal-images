@@ -1,0 +1,39 @@
+ShowcaseScreen:
+    name: 'Accueil'
+
+    fullscreen: True
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Bienvenue sur Glaudetect' if app.language == 'FR' else 'Welcome to Glaudetect'
+            Label:
+                text: ''
+                size_hint: .3, .15
+
+            Image:
+                source: 'data/AccueilGlaucome.png' if app.language == 'FR' else 'data/AccueilGlaucomeEN.png'
+
+
+            Label:
+                text: ''
+                size_hint: .3, .15
+
+
+
+    Button:
+        background_color: .2, .7, .6, .6
+        size_hint_y: None
+        height: '57dp'
+        text: 'Démarrer' if app.language == 'FR' else 'Start'
+        text_size: self.width, None
+        text_size: self.size
+        halign: 'center'
+        valign: 'middle'
+        values: app.screen_names
+        on_release: 
+            idx = app.screen_names.index('Démarrer');\
+            app.go_screen(idx)
+

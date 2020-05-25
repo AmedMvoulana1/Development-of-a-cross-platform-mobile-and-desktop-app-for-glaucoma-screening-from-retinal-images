@@ -1,0 +1,213 @@
+#:import Label kivy.uix.label.Label
+#:import Image kivy.uix.image.Image
+
+ShowcaseScreen:
+    name: 'Détecter'
+    fullscreen: True
+    
+    Carousel:
+        id: bigImage
+        Image:
+            source: app.affiche() + "/Image_base.png"
+
+
+    GridLayout:
+        cols: 4
+        spacing: '4dp'
+        size_hint: 1, .10
+
+        Button:
+            background_color: .2, .7, .6, .6
+            text: 'Agrandir' if app.language == 'FR' else 'Enlarge'
+            halign: 'center'
+            valign: 'middle'
+            on_press: root.grandImage(0)
+
+        Button:
+            id: boutonImg1
+            background_color: .2, .7, .6, 0
+            disabled: True
+            halign: 'center'
+            valign: 'middle'
+            on_press: root.grandImage(1)
+
+        Button:
+            id: boutonImg6
+            background_color: .2, .7, .6, 0
+            disabled: True
+            halign: 'center'
+            valign: 'middle'
+            on_press: root.grandImage(2)
+
+        Button:
+            id: CDR
+            background_color: .2, .7, .6, 0
+            disabled: True
+            halign: 'center'
+            valign: 'middle'
+            on_press: 
+                app.saveCDR()
+                bigImage.add_widget(Image(source=app.affiche() + '/Resultat_CDR.png'))
+                root.grandImage(3)
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: '8dp'
+        padding: '8dp'
+                
+        GridLayout:
+            cols: 4
+            spacing: '4dp'
+
+            Image:
+                id: image
+                source: app.affiche() + "/Image_base.png"
+
+            Carousel:
+                id: image1
+                Label:
+                    text: ' '
+
+            Carousel:
+                id: image6
+                Label:
+                    text: ' '
+
+            Carousel:
+                id: textCDR
+                Label:
+                    text: ' '
+
+
+        Label:
+            size_hint: 1, .1
+            text: ' '
+
+
+        RelativeLayout:
+            size_hint: 1, .25
+
+            GridLayout:
+                cols: 4
+                spacing: '4dp'
+
+                Label:
+                    background_color: .2, .7, .6, .6
+                    width: self.width
+                    text: 'Rétine' if app.language == 'FR' else 'Retina'
+                    halign: 'center'
+                    valign: 'middle'
+
+                Button:
+                    id : button1
+                    background_color: .2, .7, .6, .6
+                    width: self.width
+                    text: 'ROI' 
+                    text_size: self.width, None
+                    text_size: self.size
+                    halign: 'center'
+                    valign: 'middle'
+                    on_press: 
+                        app.OD_detection()
+                        root.image1()
+                        bigImage.add_widget(Image(source=app.affiche() + '/7_cropped.jpg'))
+                        button3.disabled = False
+                    on_release : 
+                        button1.disabled = True
+                        boutonImg1.disabled = False
+                        button3.background_color = [.2, .7, .6, .6]
+                        button3.text = 'CDR'
+                        button3.halign = 'center'
+                        button3.valign = 'middle'
+                        boutonImg1.background_color = [.2, .7, .6, .6]
+                        boutonImg1.text = 'Agrandir' if app.language == 'FR' else 'Enlarge'
+
+                Button:
+                    id : button3
+                    background_color: .2, .7, .6, 0
+                    width: self.width
+                    disabled : True
+                    on_press: 
+                        app.OC_OD_segmentation()
+                        app.overlay_result()
+                        root.image6()
+                        bigImage.add_widget(Image(source=app.affiche() + '/overlay.png'))
+                        button3.disabled = True
+                        button4.disabled = False
+                    on_release :
+                        boutonImg6.disabled = False
+                        button4.background_color = [.2, .7, .6, .6]
+                        button4.text = "Glaudetect'"
+                        button4.halign = 'center'
+                        button4.valign = 'middle'
+                        boutonImg6.background_color = [.2, .7, .6, .6]
+                        boutonImg6.text = 'Agrandir' if app.language == 'FR' else 'Enlarge'
+
+
+                Button:
+                    id : button4
+                    background_color: .2, .7, .6, 0
+                    width: self.width
+                    text_size: self.width, None
+                    text_size: self.size
+                    disabled : True
+                    on_release : 
+                        root.cdr()
+                        button4.disabled = True
+                        button1.disabled = False
+                        CDR.disabled = False
+                        CDR.background_color = [.2, .7, .6, .6]
+                        CDR.text = 'Agrandir' if app.language == 'FR' else 'Enlarge'
+
+
+        RelativeLayout:
+            size_hint: 1, .25
+
+            GridLayout:
+                cols: 3
+                spacing: '4dp'
+
+                Label:
+                    text: ' '
+
+                Button:
+                    id : buttonFull
+                    background_color: .2, .7, .6, .6
+                    width: self.width
+                    text: 'Procédure entière' if app.language == 'FR' else 'Total procedure'
+                    text_size: self.width, None
+                    text_size: self.size
+                    halign: 'center'
+                    valign: 'middle'
+                    disabled : False
+                    on_press : 
+                        app.total()
+                        root.image1()
+                        root.image6()
+                        root.cdr()
+                        bigImage.add_widget(Image(source=app.affiche() + '/7_cropped.jpg'))
+                        bigImage.add_widget(Image(source=app.affiche() + '/overlay.png'))
+                        button1.disabled = False
+                        button3.disabled = True
+                        boutonImg1.disabled = False
+                        button3.background_color = [.2, .7, .6, .6]
+                        button3.text = 'CDR'
+                        button3.halign = 'center'
+                        button3.valign = 'middle'
+                        boutonImg1.background_color = [.2, .7, .6, .6]
+                        boutonImg1.text = 'Agrandir' if app.language == 'FR' else 'Enlarge'
+                        boutonImg6.disabled = False
+                        button4.disabled = True
+                        button4.background_color = [.2, .7, .6, .6]
+                        button4.text = "Glaudetect'"
+                        button4.halign = 'center'
+                        button4.valign = 'middle'
+                        boutonImg6.background_color = [.2, .7, .6, .6]
+                        boutonImg6.text = 'Agrandir' if app.language == 'FR' else 'Enlarge'
+                        CDR.disabled = False
+                        CDR.background_color = [.2, .7, .6, .6]
+                        CDR.text = 'Sauvegarder' if app.language == 'FR' else 'Save'
+
+                Label:
+                    text: ' '

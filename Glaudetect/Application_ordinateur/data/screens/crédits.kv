@@ -1,0 +1,20 @@
+ShowcaseScreen:
+    name: 'Crédits'
+
+    fullscreen: True
+
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Crédits' if app.language == 'FR' else 'Credits'
+            Label:
+                text: '\n - PROPOSÉ PAR - \n \n BERNARD Emilie \n CHEN Emma \n FENG Yunhan \n LABA Rita \n \n \n - REMERCIEMENTS - \n \n KACHOURI Rostom \n  \n AKIL Mohamed \n \n MVOULANA Amed \n \n \n - SITE - \n \n Kivy 1.10.1 \n Lien : https://kivy.org \n \n \n - VERSION - \n \n Glaudetect 1.0 \n Date de sortie : 25 Juin 2019 ' if app.language == 'FR' else '\n - PROPOSED BY - \n \n BERNARD Emilie \n CHEN Emma \n FENG Yunhan \n LABA Rita \n \n \n - ACKNOWLEDGEMENTS - \n \n KACHOURI Rostom \n MVOULANA Amed \n \n \n - SITE - \n \n Kivy 1.10.1 \n Link : https://kivy.org \n \n \n - VERSION - \n \n Glaudetect 1.0 \n Date of release : June 25th 2019 '
+                text_size: self.width, self.height
+                halign: 'center'
+                valign: 'middle'
+                font_size: 20
+
+

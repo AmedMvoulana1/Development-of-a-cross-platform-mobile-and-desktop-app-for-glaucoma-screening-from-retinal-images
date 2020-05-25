@@ -1,0 +1,118 @@
+ShowcaseScreen:
+    name: 'Choose'
+
+    fullscreen: True
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Créer une base' if app.language == 'FR' else 'Create a database'
+            Label:
+                text: ''
+                size_hint: .3, .15
+
+    RelativeLayout:
+        GridLayout:
+            pos_hint: {'center_x': 1.5, 'center_y': .9}
+            spacing: '8dp'
+            height: self.minimum_height
+
+            Label:
+                text: '                                              Veuillez entrer un nom :' if app.language == 'FR' else '                                         Please enter a name : '
+
+    RelativeLayout:
+
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .7}
+            TextInput:
+                id: input
+                size_hint_y: None
+                height: '57dp'
+                multiline: False
+
+    GridLayout:
+        cols: 5
+        Label:
+            text: ''
+        Label:
+            text: ''
+
+        Button:
+            id : button1
+            background_color: .2, .7, .6, .6
+            text: 'Valider' if app.language == 'FR' else 'Confirm'
+            halign: 'center'
+            valign: 'middle'
+            height: '32dp'
+            on_press: root.valider_base2(root.ids.input.text)
+            on_release:
+                button1.disabled = True
+                input.disabled = True
+                button2.disabled = False
+                button3.disabled = False
+
+        Label:
+            text: ''
+        Label:
+            text: ''
+
+        Label:
+            text: ''
+        Label:
+            text: ''
+        Label:
+            text: ''
+        Label:
+            text: ''
+        Label:
+            text: ''
+
+
+
+    GridLayout:
+
+        cols: 2
+        spacing: '8dp'
+        size_hint_y: None
+        height: self.minimum_height
+
+
+        Button:
+            id : button2
+            disabled: True
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '57dp'
+            text: 'Capturer' if app.language == 'FR' else 'Capture'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_release: 
+                idx = app.screen_names.index('Save');\
+                app.go_screen(idx)
+
+        Button:
+            id : button3
+            disabled: True
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '57dp'
+            text: 'Parcourir...' if app.language == 'FR' else 'Upload...'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_release: 
+                idx = app.screen_names.index('Parcourir');\
+                app.go_screen(idx)
+
+<CTextInput@TextInput>
+    on_focus:
+        screen = self.parent.parent.parent.parent
+        if screen.parent: screen.focused = self

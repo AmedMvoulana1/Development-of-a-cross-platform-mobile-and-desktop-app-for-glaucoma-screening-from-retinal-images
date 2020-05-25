@@ -1,0 +1,119 @@
+<SpinnerOption>
+    background_color: .4, .4, .4, 1
+
+
+ShowcaseScreen:
+    name: 'Choose'
+
+    fullscreen: True
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Choisir une base' if app.language == 'FR' else 'Choose an existing database'
+
+    RelativeLayout:
+        GridLayout:
+            pos_hint: {'center_x': 1.5, 'center_y': .9}
+            spacing: '8dp'
+            height: self.minimum_height
+
+            Label:
+                text: '                                              Veuillez choisir une base :' if app.language == 'FR' else '                                         Please choose a database : '
+
+    RelativeLayout:
+
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .7}
+            Spinner:
+                id: spinner
+                text: 'Home'
+                size_hint_y: None
+                height: '48dp'
+                values: root.contenu()
+                background_normal: 'data/spinner.png'
+                background_down: 'data/spinner.png'
+
+    GridLayout:
+        cols: 5
+        Label:
+            text: ''
+        Label:
+            text: ''
+
+        Button:
+            id: button1
+            background_color: .2, .7, .6, .6
+            text: 'Valider' if app.language == 'FR' else 'Confirm'
+            halign: 'center'
+            valign: 'middle'
+            width: self.width
+            height: self.height
+            on_press: root.valider_base1(str(spinner.text))
+            disabled: root.len(str(spinner.text))
+            on_release : 
+                button1.disabled = True
+                button2.disabled = False
+                button3.disabled = False
+                spinner.disabled = True
+
+        Label:
+            text: ''
+        Label:
+            text: ''
+        Label:
+            text: ''
+        Label:
+            text: ''
+        Label:
+            text: ''
+        Label:
+            text: ''
+        Label:
+            text: ''
+
+
+
+    GridLayout:
+
+        cols: 2
+        spacing: '8dp'
+        size_hint_y: None
+        height: self.minimum_height
+
+
+        Button:
+            id:button2
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '57dp'
+            text: 'Capturer' if app.language == 'FR' else 'Capture'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            disabled: True
+            on_release: 
+                idx = app.screen_names.index('Save');\
+                app.go_screen(idx)
+
+        Button:
+            id:button3
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '57dp'
+            text: 'Parcourir...' if app.language == 'FR' else 'Upload...'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            disabled: True
+            on_release: 
+                root.ou()
+                idx = app.screen_names.index('Parcourir');\
+                app.go_screen(idx)
