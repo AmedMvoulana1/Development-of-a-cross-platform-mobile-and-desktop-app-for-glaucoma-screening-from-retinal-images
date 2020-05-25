@@ -1,0 +1,117 @@
+ShowcaseScreen:
+    name: 'Save'
+
+    fullscreen: True
+
+    Accordion:
+
+        orientation: 'vertical'
+
+        AccordionItem:
+            title: 'Nommer les images capturées' if app.language == 'FR' else 'Give a name to a captured image'
+            Label:
+                text: ''
+                size_hint: .3, .15
+
+    RelativeLayout:
+
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': 1}
+
+            GridLayout:
+
+                cols: 3
+                spacing: '8dp'
+                size_hint_y: None
+                height: self.minimum_height
+
+                Label:
+                    text: ' '
+
+                BoxLayout:
+                    TextInput:
+                        id: input
+                        size_hint_y: None
+                        height: '57dp'
+                        multiline: False
+                Label:
+                    text: ' '
+                Label:
+                    text: ' '
+                Label:
+                    text: ' '
+                Label:
+                    text: ' '
+                Label:
+                    text: ' '
+                Label:
+                    text: ' '
+                Label:
+                    text: ' '
+    RelativeLayout:
+
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': 1}
+            
+            GridLayout:
+
+                cols: 3
+                spacing: '8dp'
+                size_hint_y: None
+                height: self.minimum_height
+
+                Label:
+                    text: ' '
+
+                Label:
+                    text: ' '
+                Label:
+                    text: ' '
+
+    GridLayout:
+
+        cols: 2
+        spacing: '8dp'
+        size_hint_y: None
+        height: self.minimum_height
+
+
+        Button:
+            id:button2
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '57dp'
+            text: 'Valider' if app.language == 'FR' else 'Confirm'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_press: root.save(root.ids.input.text)
+            on_release: 
+                idx = app.screen_names.index('Capturer');\
+                app.go_screen(idx)
+
+        Button:
+            id:button3
+            background_color: .2, .7, .6, .6
+            size_hint_y: None
+            height: '57dp'
+            text: 'Par défaut' if app.language == 'FR' else 'By default'
+            text_size: self.width, None
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
+            values: app.screen_names
+            on_press: root.save2()
+            on_release: 
+                idx = app.screen_names.index('Capturer');\
+                app.go_screen(idx)
+
+<CTextInput@TextInput>
+    on_focus:
+        screen = self.parent.parent.parent.parent
+        if screen.parent: screen.focused = self
+
