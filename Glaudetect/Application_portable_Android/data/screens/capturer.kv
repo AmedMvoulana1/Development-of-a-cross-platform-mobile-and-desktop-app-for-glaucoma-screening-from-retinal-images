@@ -1,0 +1,108 @@
+#:import Label kivy.uix.label.Label
+#:import EventLoop kivy.base
+
+
+ShowcaseScreen:
+    name: 'Capturer'
+
+    fullscreen: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: '8dp'
+        padding: '8dp'
+
+        RelativeLayout:
+
+            Camera:
+                id: camera
+                size: 700, 500
+                resolution: (640, 480) 
+                play: True
+                pos_hint: {'center_x': 0.5, 'center_y': .6}
+
+            Button:
+                background_color: .2, .7, .6, .4
+                size_hint_x: .67
+                size_hint_y: .1
+                pos_hint: {'center_x': .5, 'center_y': 0.18}
+                text: 'Capturer' if app.language == 'FR' else 'Capture'
+                on_release: 
+                    root.capture()
+                    boutonValider.disabled = False
+
+            Label:
+                size_hint: 1, .1
+                text: ' \n Veuillez choisir une photo :' if app.language == 'FR' else ' \n Please, choose a picture :'
+                halign: 'center'
+                valign: 'middle'
+
+        GridLayout:
+            cols: 5
+            spacing: '4dp'
+            size_hint: 1, .4
+
+            Label:
+                size_hint: .1, 1
+                text: ' '
+
+            Button:
+                size_hint: .15, 1
+                background_normal: 'data/gauche.png'
+                background_down: 'data/gaucheDown.png'
+                size_hint_x: None
+                width: self.height
+                on_press: 
+                    background_selected = 'data/gauche.png'
+                on_release: carousel.load_previous()
+
+
+            Carousel:
+                id: carousel
+                size_hint: .7, 1
+                pos_hint: {'center_x': .5, 'center_y': 0}
+                Label:
+                    text: ' '
+
+            Button:
+                size_hint: .15, 1
+                background_normal: 'data/droit.png'
+                background_down: 'data/droitDown.png'
+                size_hint_x: None
+                width: self.height
+                on_release: carousel.load_next()
+
+            Label:
+                size_hint: .1, 1
+                text: ' '
+
+
+        GridLayout:
+            cols: 5
+            spacing: '4dp'
+            size_hint: 1, .15
+
+            Label:
+                text: ' '
+
+            Label:
+                text: ' '
+
+            Button:
+                id: boutonValider
+                disabled : True
+                background_color: .2, .7, .6, .6
+                text: 'Valider' if app.language == 'FR' else 'Confirm'
+                values: app.screen_names
+                on_release: 
+                    camera.play = not camera.play
+                    root.valider()
+                    idx = app.screen_names.index('Detecter');\
+                    app.go_screen(idx)
+                    app.go_folder()
+
+            Label:
+                text: ' '
+
+            Label:
+                text: ' '
+
